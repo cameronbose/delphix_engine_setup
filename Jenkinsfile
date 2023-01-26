@@ -7,7 +7,7 @@ pipeline {
     stages { 
         stage('Git Checkout') {
             steps {
-                //bat 'rmdir /s /q delphix_engine_setup';
+                bat 'rmdir /s /q delphix_engine_setup';
                 bat 'git clone https://github.com/cameronbose/delphix_engine_setup.git';
             }
         }
