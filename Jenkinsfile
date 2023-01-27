@@ -1,4 +1,4 @@
-properties([parameters([string(defaultValue: '10.44.1.119', name: 'dxEngineAddress', trim: true), choice(choices: ['6.0.14.0', '6.0.15.0', '6.0.16.0', '6.0.17.0'], name: 'dxVersion'), choice(choices: ['true', 'false'], name: 'PhoneHomeService'), choice(choices: ['true', 'false'], name: 'UserInterfaceConfig'), choice(choices: ['true', 'false'], name: 'ProxyConfiguration'), choice(choices: ['true', 'false'], name: 'SMTPConfig'), choice(choices: ['true', 'false'], name: 'NTPConfig'), string(defaultValue: 'VIRTUALIZATION', name: 'engineType', trim: true)])])
+properties([parameters([string(defaultValue: '10.44.1.119', name: 'dxEngineAddress', trim: true), choice(choices: ['6.0.14.0', '6.0.15.0', '6.0.16.0', '6.0.17.0'], name: 'dxVersion'), choice(choices: ['true', 'false'], name: 'PhoneHomeService'), choice(choices: ['true', 'false'], name: 'UserInterfaceConfig'), choice(choices: ['true', 'false'], name: 'ProxyConfiguration'), choice(choices: ['true', 'false'], name: 'SMTPConfig'), choice(choices: ['true', 'false'], name: 'NTPConfig'), string(defaultValue: 'VIRTUALIZATION', name: 'engineType', trim: true), string(defaultValue: 'NONE', name: 'LDAP', trim: true)])])
 pipeline { 
     agent any 
     environment { 
@@ -14,7 +14,7 @@ pipeline {
         
         stage("Setting up Delphix Engine") { 
             steps {
-                bat "python getParameters.py ${params.dxEngineAddress} ${params.dxVersion} ${SECRET_CREDS_USR} ${SECRET_CREDS_PSW} ${params.PhoneHomeService} ${params.UserInterfaceConfig} ${params.ProxyConfiguration} ${params.SMTPConfig} ${params.NTPConfig} ${params.engineType}";    
+                bat "python getParameters.py ${params.dxEngineAddress} ${params.dxVersion} ${SECRET_CREDS_USR} ${SECRET_CREDS_PSW} ${params.PhoneHomeService} ${params.UserInterfaceConfig} ${params.ProxyConfiguration} ${params.SMTPConfig} ${params.NTPConfig} ${params.engineType} ${params.LDAP}";    
             }
         } 
     }

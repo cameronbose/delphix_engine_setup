@@ -14,6 +14,7 @@ ProxyConfiguration = sys.argv[7]
 SMTPConfig = sys.argv[8]
 NTPConfig = sys.argv[9]
 engineType = sys.argv[10]
+LDAP = sys.argv[11]
 
 def getDiskReference():
     APIQuery = os.popen(f'curl -X GET -k http://{dxEngine}/resources/json/delphix/storage/device -b "cookies.txt" -H "Content-Type: application/json"').read()
@@ -46,6 +47,6 @@ if __name__ == "__main__":
         storageParams.write(f"{theList}")
 
     major,minor,micro = getAPIVersion(dxVersion)
-    os.system(f"sh POST_Commands.sh {dxEngine} {major} {minor} {micro} {emailAddress} {password} {PhoneHomeService} {UserInterfaceConfig} {ProxyConfiguration} {SMTPConfig} {NTPConfig} {engineType}")
+    os.system(f"sh POST_Commands.sh {dxEngine} {major} {minor} {micro} {emailAddress} {password} {PhoneHomeService} {UserInterfaceConfig} {ProxyConfiguration} {SMTPConfig} {NTPConfig} {engineType} {LDAP}")
 
 

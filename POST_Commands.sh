@@ -23,6 +23,8 @@ shift
 NTPConfig=$1 
 shift 
 engineType=$1
+shift 
+LDAP=$1 
 
 storageList=`cat storageParams.txt`
 
@@ -83,10 +85,17 @@ curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/system \
 EOF
 sleep 10
 
-# curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/system \
-# -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json"
-# http://${dxEngine}/resources/json/delphix/system/stopMasking
-# no payload! 
+if [ ${LDAP} != "NONE" ];then
+    curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/service/ldap/server \
+    -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
+    {"host":"EXAMPLE","port":389,"authMethod":"SIMPLE","useSSL":false,"type":"LdapServer"}
+EOF
+fi 
+
+curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/system \
+-b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json"
+http://${dxEngine}/resources/json/delphix/system/stopMasking
+no payload! 
 
 current_date=$(date +"%Y-%m-%d")
 current_time=$(date +"%H:%M:%S")
@@ -95,11 +104,7 @@ curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/service/t
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
 {"currentTime":"${current_date}T${current_time}Z","systemTimeZone":"Europe/London","ntpConfig":{"enabled":${NTPConfig},"type":"NTPConfig"},"type":"TimeConfig"}
 EOF
-<<<<<<< HEAD
  
-=======
-
->>>>>>> c6b01011f88c3afc644a8aca056d165efdf3c76d
 curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/domain/initializeSystem \
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
 {"defaultUser":"admin","defaultPassword":"${password}","defaultEmail":"${emailAddress}","devices":${storageList},"type":"SystemInitializationParameters"}
