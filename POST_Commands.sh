@@ -99,7 +99,7 @@ sleep 10
 
 curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/domain/initializeSystem \
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
-{"defaultUser":"admin","defaultPassword":"${password}","defaultEmail":"${email}","devices":${storageList},"type":"SystemInitializationParameters"}
+{"defaultUser":"admin","defaultPassword":"${password}","defaultEmail":"${emailAddress}","devices":${storageList},"type":"SystemInitializationParameters"}
 EOF 
 
 
