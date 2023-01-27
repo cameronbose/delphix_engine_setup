@@ -43,7 +43,7 @@ EOF
 
 curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/login \
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
-{"username":"sysadmin","password":"12345678","keepAliveMode":"KEEP_ALIVE_HEADER_ONLY","target":"SYSTEM","type":"LoginRequest"}
+{"username":"sysadmin","password":"sysadmin","keepAliveMode":"KEEP_ALIVE_HEADER_ONLY","target":"SYSTEM","type":"LoginRequest"}
 EOF
 
 sleep 10 
