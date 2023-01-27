@@ -104,7 +104,11 @@ curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/service/t
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
 {"currentTime":"${current_date}T${current_time}Z","systemTimeZone":"Europe/London","ntpConfig":{"enabled":${NTPConfig},"type":"NTPConfig"},"type":"TimeConfig"}
 EOF
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 1b16eede6da72beb5e24d7b48e6216c9f99fd359
 curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/domain/initializeSystem \
 -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
 {"defaultUser":"admin","defaultPassword":"${password}","defaultEmail":"${emailAddress}","devices":${storageList},"type":"SystemInitializationParameters"}
