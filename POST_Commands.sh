@@ -99,7 +99,7 @@ authKey=$(echo $authKey | cut -d ":" -f 2 | tr -d '",}')
 if [ ${engineType} == "MASKING" ];then
     echo "then this bit ${authKey}"
     curl -s -X PUT -k --data @- http://${dxEngine}/masking/api/users/6 \
-    -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" -H "Authorization: Basic ${authKey}" <<EOF
+    -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" -H "Authorization: ${authKey}" <<EOF
     {"userName":"admin","password":"${password}","firstName":"","lastName":"","email":"${email}","isAdmin":true,"userStatus":"ACTIVE"}
 EOF
 fi 
