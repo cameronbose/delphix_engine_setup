@@ -88,7 +88,7 @@ sleep 10
 if [ ${LDAP} != "NONE" ];then
     curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/service/ldap/server \
     -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
-    {"host":"EXAMPLE","port":389,"authMethod":"SIMPLE","useSSL":false,"type":"LdapServer"}
+    {"host":"${LDAP}","port":389,"authMethod":"SIMPLE","useSSL":false,"type":"LdapServer"}
 EOF
 fi 
 
