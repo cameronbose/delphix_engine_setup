@@ -100,7 +100,7 @@ if [ ${engineType} == "MASKING" ];then
     echo "then this bit ${authKey}"
     curl -s -X PUT -k --data @- http://${dxEngine}/masking/api/users/6 \
     -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" -H "Authorization: ${authKey}" <<EOF
-    {"userName":"admin","password":"${password}","firstName":"","lastName":"","email":"${email}","isAdmin":true,"userStatus":"ACTIVE"}
+    {"userName":"admin","password":"${password}","firstName":"","lastName":"","email":"${emailAddress}","isAdmin":true,"userStatus":"ACTIVE"}
 EOF
 fi 
 
