@@ -31,7 +31,6 @@ def getDiskReference():
     myList = myList.replace('\'', '"')
     return myList
 
-
 def getAPIVersion(delphixVersion):
     apiVersion = versionDict[delphixVersion]
     major,minor,micro = apiVersion.split('.')

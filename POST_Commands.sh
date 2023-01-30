@@ -85,6 +85,20 @@ curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/system \
 EOF
 sleep 10
 
+if [ ${engineType} == "MASKING" ];then
+    curl -s -X POST -k --data @- http://${dxEngine}/masking/api/login \
+    -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
+    {"username":"admin","password":"Admin-12"}
+EOF
+fi
+
+if [ ${engineType} == "MASKING" ];then
+    curl -s -X PUT -k --data @- http://${dxEngine}/masking/api/users/6 \
+    -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
+    {"userName":"admin","password":"${password}","firstName":"","lastName":"","email":"${email}","isAdmin":true,"userStatus":"ACTIVE"}
+EOF
+fi 
+
 if [ ${LDAP} != "NONE" ];then
     curl -s -X POST -k --data @- http://${dxEngine}/resources/json/delphix/service/ldap/server \
     -b "cookies.txt" -c "cookies.txt" -H "Content-Type: application/json" <<EOF
